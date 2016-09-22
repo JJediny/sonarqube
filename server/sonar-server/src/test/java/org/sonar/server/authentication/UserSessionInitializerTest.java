@@ -26,8 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.sonar.api.config.Settings;
 import org.sonar.api.config.MapSettings;
+import org.sonar.api.config.Settings;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -66,12 +66,13 @@ public class UserSessionInitializerTest {
 
   JwtHttpHandler jwtHttpHandler = mock(JwtHttpHandler.class);
   BasicAuthenticator basicAuthenticator = mock(BasicAuthenticator.class);
+  SsoAuthenticator ssoAuthenticator = mock(SsoAuthenticator.class);
 
   Settings settings = new MapSettings();
 
   UserDto user = newUserDto();
 
-  UserSessionInitializer underTest = new UserSessionInitializer(dbClient, settings, jwtHttpHandler, basicAuthenticator, userSession);
+  UserSessionInitializer underTest = new UserSessionInitializer(dbClient, settings, jwtHttpHandler, basicAuthenticator, ssoAuthenticator, userSession);
 
   @Before
   public void setUp() throws Exception {
